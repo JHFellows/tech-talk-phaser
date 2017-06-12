@@ -31,25 +31,24 @@ export default class extends Phaser.State {
       asset: 'mushroom'
     })
 
-    // this.walk = new Knight({
+    // this.knight = new Knight({
     //   game: this,
     //   x:10,
     //   y:358,
-    //   asset: 'walk'
+    //   asset: 'knight'
     // })
 
     //this.game.add.existing(this.mushroom)
     tileSprite = this.add.tileSprite(0, 0, 800, 600, 'background');
-    s = this.add.sprite(this.world.centerX, this.world.centerY, 'walk');
+    s = this.add.sprite(this.world.centerX, this.world.centerY, 'knight');
     s.anchor.setTo(2, -0.3);
     s.scale.setTo(0.25,0.25);
 
-    s.animations.add('walk');
-    s.animations.play('walk', 10, true);
-    // this.game.add.existing(this.walk)
-    // this.walk.animations.add('walk');
-    // this.walk.animations.play('walk',10,true)
+    s.animations.add('walk', [2,3,4,5,6,7,8,9,10], true);
+    s.animations.add('jump', [12,13,14,15,16,17,18,19,20],true)
+    s.animations.add('idle', [0], false);
 
+    s.animations.play('idle');
 
     cursors = this.input.keyboard.createCursorKeys();
     //game.debug.text('Press down arrow keys to move the tileSprite', 20, 20);
@@ -59,19 +58,15 @@ export default class extends Phaser.State {
   //   background.tilePosition.x += 2
   // }
   update () {
-    // Move tilesprite position by pressing arrow keys
-  //   if (cursors.left.isDown)
-  //   {
-  //       tileSprite.tilePosition.x += 8;
-  //   }
-  //   else if (cursors.right.isDown)
-  //   {
-  //       tileSprite.tilePosition.x -= 8;
-  //   }
-  // }
-    // if (cursors.right.isDown) {
-    //   knight.animations.play('walk')
-    // }
+    if (cursors.right.isDown) {
+      s.animations.play('walk',10,true)
+    }
+    else if (cursors.up.isDown) {
+      s.animations.play('jump',10,true)
+    }
+    else{
+       s.animations.play('idle')
+    }
   }
   render () {
     if (__DEV__) {
