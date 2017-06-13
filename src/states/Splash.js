@@ -20,7 +20,7 @@ export default class extends Phaser.State {
 //  There are 18 frames in the PNG - you can leave this value blank if the frames fill up the entire PNG, but in this case there are some
 //  blank frames at the end, so we tell the loader how many to load
     //this.load.spritesheet('walk', 'assets/images/walk.png', 587, 707, 7);
-    this.load.atlasJSONHash('knight', 'assets/images/knight_spritesheet.png', 'assets/images/knight_spritesheet.json');
+    this.load.atlas('knight', 'assets/images/knight_spritesheet.png', 'assets/images/knight_spritesheet.json');
   }
 
   create () {
